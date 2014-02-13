@@ -1,0 +1,11 @@
+
+.bsx {
+	    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 6px;
+    display: block;
+    line-height: 1.42857;
+    margin-bottom: 20px;
+    padding: 4px;
+    transition: all 0.2s ease-in-out 0s;
+}
