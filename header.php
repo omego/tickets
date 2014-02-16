@@ -1,6 +1,10 @@
 <?php
 ob_start();
 session_start();
+
+if(isset($_SESSION['Username']))
+{
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +29,39 @@ session_start();
   </head>
   <body>
 
-<? include 'nav.html';  ?>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <a class="navbar-brand" href="#">Support Tickets System</a>
+	</div>
 
 
+	  <form class="navbar-form navbar-left" role="search">
+		<div class="form-group">
+		  <input type="text" class="form-control" placeholder="Search">
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	  </form>
+
+
+	  <p class="navbar-text navbar-right">Signed in as <strong> <? echo $_SESSION['Username']; ?></strong>, <a href="logout.php">logout</a></p>
+
+
+
+
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<?
+
+}
+else
+{
+  // Not logged in
+  header('Location: login.php');
+  exit();
+}
+
+?>

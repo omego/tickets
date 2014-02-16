@@ -2,9 +2,14 @@
 include 'header.php'; 
 include 'connect.php';
 
-$Engineer_ID = "3";
 
-$results = mysql_query("select * from tickets_entry");
+$omg = ($_SESSION['Username']);
+
+
+
+$row = mysql_fetch_array(mysql_query("SELECT User_Group FROM users WHERE Username = '". $omg ."'"));
+$user_group = $row['User_Group'];
+
 ?>
 
 
@@ -12,72 +17,18 @@ $results = mysql_query("select * from tickets_entry");
 
 
 	 <div class="container">
+		<?
 		
-		<div class="row">
-			
-			<div class="col-md-12">
-				
-			<div class="panel panel-default">
-			  <div class="panel-body">
-				
-
-				<a href="new-ticket.php" class="btn btn-primary btn-lg"> <span class="glyphicon glyphicon-plus"></span> Add New Ticket</a>
-			  </div>
-			</div></div>
-
-			
-		  <div class="col-md-12">
-		    
-
-
-		    <div class="row">
-		      <div class="col-md-12">
-
-				<div class="panel panel-default">
-				  <!-- Default panel contents -->
-				  <div class="panel-heading">Panel heading</div>
-				
-				  <!-- Table -->
-				  <table class="table table-striped">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Task</th>
-							<th>Assigned to</th>
-							<th class="text-center">Options</th>
-							<th class="text-center">Status</th>
-						</tr>
-					</thead>
-					
-					<? while($row = mysql_fetch_array($results)){ ?>
-							<tr>
-								<td><? echo $row['id']; ?></td>
-								<td><? echo $row['Service_Description']; ?></td>
-								<td><? echo $row['Engineer_Name']; ?></td>
-								<td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-								<td class="text-center"> <span class="label label-success">Done</span> </td>
-							</tr>
-							
-<? } ?>
-				  </table>
-				</div>
-
-
-
-		     	   </div>
-
-			   	
-		        	
-
-		        
-
-
-		      	   </div>
-		    </div>
-		  </div>
-		</div>
-
-
+		if ($user_group == "Administrator"){
+			include 'admin-cp.php';
+			echo "Administrator";
+		}elseif ($user_group == "Users"){
+			include 'user-cp.php';
+			echo "Users";
+		}
+		
+		?>
+		
 	 </div>
 	 <!-- /.container -->
 
