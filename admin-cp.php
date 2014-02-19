@@ -45,7 +45,7 @@
 								<td><a href="<? echo 'view-ticket.php?id=' . $row['id'] . ''; ?>"><? echo $row['Ticket_title']; ?></a> <br><small>in <? echo $row['Ticket_Category']; ?></small></td>
 								<td><h5><? echo $row['Service_Description']; ?></h5></td>
 								<td><? echo $row['Engineer_Name']; ?></td>
-								<td class="text-center"><a class='btn btn-info btn-xs' href="<? echo 'pdf.php?id=' . $row['id'] . ''; ?>"><span class="glyphicon glyphicon-print"></span> Print</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+								<td class="text-center"><a class='btn btn-info btn-xs' title="Print" href="<? echo 'pdf.php?id=' . $row['id'] . ''; ?>"><span class="glyphicon glyphicon-print"></span></a> <a href="#" class="btn btn-danger btn-xs" title="Delete"><span class="glyphicon glyphicon-remove"></span> </a></td>
 								<td class="text-center"> <span class="label label-success">Done</span> </td>
 							</tr>
 
