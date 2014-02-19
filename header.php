@@ -10,7 +10,7 @@ if(isset($_SESSION['Username']))
 <html lang="en">
   <head>
 	<meta charset="utf-8">
-	<title>tickets</title>
+	<title>SIS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Loading Bootstrap -->
@@ -21,7 +21,8 @@ if(isset($_SESSION['Username']))
 	
 <!-- 	<link href="css/desktop.css" rel="stylesheet" media="(min-width: 1200px)" />-->
 	
-	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/jquery.js"></script>
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 	<!--[if lt IE 9]>
 	  <script src="js/html5shiv.js"></script>
@@ -33,7 +34,7 @@ if(isset($_SESSION['Username']))
   <div class="container-fluid">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
-	  <a class="navbar-brand" href="#">Support Tickets System</a>
+	  <a class="navbar-brand" href="index.php">Support Tickets System</a>
 	</div>
 
 

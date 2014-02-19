@@ -1,6 +1,10 @@
 <? 
-include 'header.php'; 
+include 'header.php';
+include 'connect.php';
 include 'date-time-class.php';
+
+$Real_Name_List = mysql_query("select Real_Name from users");
+$Category_List = mysql_query("select Name from category");
 
 ?>
 
@@ -55,6 +59,20 @@ include 'date-time-class.php';
 		
 	</div><!-- ROW END -->
 		
+		<div class="row">
+			<!-- Select Basic -->
+			<div class="col-md-12">
+			<div class="control-group">
+			  <label class="control-label" for="Ticket_title">Ticket title</label>
+			  <div class="controls">
+				<select id="Ticket_title" name="Ticket_title" class="form-control input-lg">
+				  <option>COMJ</option>
+				</select>
+			  </div>
+			</div>
+			</div>
+			</div><!-- ROW END -->
+			
 		<div class="row">
 		<!-- Select Basic -->
 		<div class="col-md-4">
@@ -113,10 +131,10 @@ include 'date-time-class.php';
 		  <label class="control-label" for="Engineer_Name">Engineer's Name</label>
 		  <div class="controls">
 			<select id="Engineer_Name" name="Engineer_Name" class="form-control input-lg">
-			  <option>Moayad</option>
-			  <option>Fahad</option>
-			  <option>Joey</option>
-			  <option>Abdullah</option>
+				
+				<? while($row = mysql_fetch_array($Real_Name_List)){ ?>
+					<option><? echo $row['Real_Name']; ?></option>
+			 	<? } ?>
 			</select>
 		
 		  </div>
@@ -128,10 +146,9 @@ include 'date-time-class.php';
 		  <label class="control-label" for="Engineer_Badge_No">Ticket Category</label>
 		  <div class="controls">
 			<select id="Ticket_Category" name="Ticket_Category" class="form-control input-lg">
-			  <option>Software</option>
-			  <option>Hardware</option>
-			  <option>Network</option>
-			  <option>Instructions</option>
+				<? while($row2 = mysql_fetch_array($Category_List)){ ?>
+						<option><? echo $row2['Name']; ?></option>
+				 	<? } ?>
 			</select>
 		  </div>
 		</div></div>

@@ -9,4 +9,3 @@ mysql_query('SET CHARACTER SET utf8');
 //echo "Connected to Database";
 
 ?>
-
