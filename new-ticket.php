@@ -10,17 +10,38 @@ $Category_List = mysql_query("select Name from category");
 
 
 
+<script> 
+	// wait for the DOM to be loaded 
+	$(document).ready(function() { 
+		// bind 'myForm' and provide a simple callback function 
+		$('#myForm').ajaxForm(function() { 
+			$('#notification').miniNotification();
+			$('#testmod').modal({
+			  keyboard: false
+			})
+
+		});
+		 
+	}); 
+</script> 
 
 
-	 <div class="container">
+	<div id="notification">
+	  <p>The notification has been successfully displayed</p>
+	</div>
+
+
+
+		<div class="modal fade" id="testmod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Create New Ticket</h4>
+			  </div>
+			  <div class="modal-body">
+		<form id="myForm" action="ticket-process.php" method="post" class="form-horizontal">
 		
-		<div class="panel panel-default">
-		<div class="panel-body">
-		
-		<form action="ticket-process.php" method="post" class="form-horizontal">
-		
-		<!-- Form Name -->
-		<legend>Create New Ticket</legend>
 		
 		<div class="row">
 		
@@ -65,9 +86,7 @@ $Category_List = mysql_query("select Name from category");
 			<div class="control-group">
 			  <label class="control-label" for="Ticket_title">Ticket title</label>
 			  <div class="controls">
-				<select id="Ticket_title" name="Ticket_title" class="form-control input-lg">
-				  <option>COMJ</option>
-				</select>
+				<input id="$Ticket_title" name="Ticket_title" value="<? echo $Ticket_title ; ?>" placeholder="" class="form-control input-lg" type="text">
 			  </div>
 			</div>
 			</div>
@@ -157,25 +176,18 @@ $Category_List = mysql_query("select Name from category");
 		</div><!-- ROW END -->
 		
 
-	<div class="row">
-	<!-- Text input-->
-	<div class="col-md-12">
-
-		<button type="submit" class="btn btn-primary btn-lg">Create</button>
-	
-
-	</div>
-
-
-		</div><!-- ROW END -->
-
 		
-		</form>
-
 		
-
-</div></div>
-	 </div>
+	  </div>
+      	  <div class="modal-footer">
+      		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      		<button id="sub" type="submit" class="btn btn-primary">Create</button>
+      	  </div>
+      	  </form>
+      	</div>
+        </div>
+      </div>
+		
 	 <!-- /.container -->
 
 

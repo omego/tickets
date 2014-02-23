@@ -67,3 +67,19 @@ body {
   text-align: center;
   text-shadow: 0 2px 2px rgba(0,0,0,0.5);
 }
+.hero-widget { text-align: center; padding-top: 20px; padding-bottom: 20px; }
+.hero-widget .icon { display: block; font-size: 96px; line-height: 96px; margin-bottom: 10px; text-align: center; }
+.hero-widget var { display: block; height: 64px; font-size: 64px; line-height: 64px; font-style: normal; }
+.hero-widget label { font-size: 17px; }
+.hero-widget .options { margin-top: 10px; }
+
+#notification {
+    display: none;
+    position: fixed;
+    cursor: pointer;
+    width: 100%;
+    background: #EFEFEF;
+    text-align: center;
+    border-top: 2px solid #FFF;
+    z-index:9999;
+}

@@ -5,6 +5,7 @@ include 'date-time-class.php';
 
 $Real_Name_List = mysql_query("select Username from users");
 $Category_List = mysql_query("select Name from category");
+$Status_List = mysql_query("select Status from Status");
 
 $member_id = $_GET['id'];
 
@@ -37,7 +38,7 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 		<div class="panel panel-default">
 		<div class="panel-body">
 
-		<form action="ticket-process.php" method="post" class="form-horizontal">
+		<form class="form-horizontal">
 
 		<!-- Form Name -->
 		<legend>Ticket Orginal Information</legend>
@@ -176,7 +177,7 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 			<!-- Textarea -->
 			<div class="col-md-12">
 			<div class="control-group">
-			  <label class="control-label" for="Service_Description"></label>
+			  <label class="control-label"></label>
 			  <div class="controls">                     
 				<a href="<? echo 'pdf.php?id=' . $row1['id'] . ''; ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-print"></span> Print PDF</a>			  
 				</div>
@@ -192,13 +193,15 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 </div></div>
 
 
+
+
 <!---------- /.stage 2 from the form ---------->
 
 		<div class="panel panel-default">
 		<div class="panel-body">
 
-	<form action="ticket-process.php" method="post" class="form-horizontal">
-
+	<form action="ticket-process-2.php" method="post" class="form-horizontal">
+<input  name="id_id" hidden="hidden" type="text" value="<?php echo $row1['id'] ?>">
 	<!-- Form Name -->
 	<legend>Ticket Process</legend>
 
@@ -222,10 +225,10 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 	  <label class="control-label" for="Ticket_Status">Status</label>
 	  <div class="controls">
 			<select id="Ticket_Status" name="Ticket_Status" class="form-control input-lg">
-			  <option>Completed</option>
-			  <option>incompleted</option>
-			  <option>pending</option>
-			  <option>working solution provided</option>
+			  <? while($row9 = mysql_fetch_array($Status_List)){ ?>
+			  		<option <? if( $row9['Status']== $row1['Ticket_Status']) echo "selected"; ?>><? echo $row9['Status']; ?></option>
+			   	<? } ?>
+
 			</select>
 	  </div>
 	</div></div></div>
@@ -252,7 +255,7 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 <!-- Text input-->
 <div class="col-md-12">
 
-	<button type="submit" class="btn btn-primary btn-lg">Save</button>
+	<button type="submit" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-save"></span> Save</button>
 
 
 </div>
