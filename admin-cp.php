@@ -1,55 +1,39 @@
 <? $results = mysql_query("select * from tickets_entry"); ?>
 <? include 'new-ticket.php'; ?>
-<div class="row">
-		<div class="col-sm-3">
-			<div class="hero-widget well well-sm">
-				<div class="icon">
-					 <i class="glyphicon glyphicon-inbox"></i>
-				</div>
-				<div class="text">
-					<var>100</var>
-					<label class="text-muted">Total Tickets</label>
-				</div>
-				
-			</div>
-		</div>
-		<div class="col-sm-3">
-			<div class="hero-widget well well-sm">
-				<div class="icon">
-					 <i class="glyphicon glyphicon-star"></i>
-				</div>
-				<div class="text">
-					<var>4</var>
-					<label class="text-muted">Total Engineers</label>
-				</div>
 
-			</div>
-		</div>
-		<div class="col-sm-3">
-			<div class="hero-widget well well-sm">
-				<div class="icon">
-					 <i class="glyphicon glyphicon-tags"></i>
-				</div>
-				<div class="text">
-					<var>25</var>
-					<label class="text-muted">Uncompleted Tickets</label>
-				</div>
+<script type="text/javascript">
+	
+$(function() {
+$(".delete_button").click(function() {
+var id = $(this).attr("id");
+var dataString = 'id='+ id ;
+var parent = $(this).parent();
 
-			</div>
-		</div>
-		<div class="col-sm-3">
-			<div class="hero-widget well well-sm">
-				<div class="icon">
-					 <i class="glyphicon glyphicon-stats"></i>
-				</div>
-				<div class="text">
-					<var>75%</var>
-					<label class="text-muted">Tickets Completed</label>
-				</div>
+if(confirm("Are you sure you want to delete this ticket?"))
+{
 
-			</div>
-		</div>
-	</div>
+$.ajax({
+type: "POST",
+url: "delete.php",
+data: dataString,
+cache: false,
+
+
+success: function()
+{
+$("#row_" + id).css("background-color", "#ff0000");
+$("#row_" + id).fadeOut('slow', function() {$("#row_" + id).remove();});
+}
+});
+
+}
+
+return false;
+});
+});</script>
+
+
+<? include 'admin-stats.php'; ?>
 
 <div class="row">
 
@@ -60,7 +44,7 @@
 
 
 				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#testmod">
-				  Launch demo modal
+				  Create New Ticket
 				</button>
 			  </div>
 			</div></div>
@@ -75,7 +59,7 @@
 
 				<div class="panel panel-default">
 				  <!-- Default panel contents -->
-				  <div class="panel-heading">Panel heading</div>
+				  <div class="panel-heading"><span class="glyphicon glyphicon-th-list"></span> Recent Tickets</div>
 
 				  <!-- Table -->
 				  <table class="table table-striped">
@@ -91,7 +75,7 @@
 					</thead>
 
 					<? while($row = mysql_fetch_array($results)){ ?>
-							<tr>
+								<tr id="row_<? echo $row['id']; ?>">
 								<td><? echo $row['id']; ?></td>
 								<td><a href="<? echo 'view-ticket.php?id=' . $row['id'] . ''; ?>"><? echo $row['Ticket_title']; ?></a> <br><small>in <? echo $row['Ticket_Category']; ?></small></td>
 								<td><h5><? echo $row['Service_Description']; ?></h5></td>
@@ -99,7 +83,8 @@
 								<td class="text-center">
 									<a class='btn btn-default btn-xs' title="Edit" href="<? echo 'edit-ticket.php?id=' . $row['id'] . ''; ?>"><span class="glyphicon glyphicon-edit"></span></a> 
 									<a class='btn btn-default btn-xs' title="Print" href="<? echo 'pdf.php?id=' . $row['id'] . ''; ?>"><span class="glyphicon glyphicon-print"></span></a> 
-									<a href="#" class="btn btn-default btn-xs" title="Delete"><span class="glyphicon glyphicon-remove"></span> </a></td>
+									<a href="#" id="<?php echo $row['id']; ?>" class="btn btn-default btn-xs delete_button" title="Click To Delete"><span class="glyphicon glyphicon-remove"></span></a>
+								</td>
 								<td class="text-center"> 
 								  								<?
 								  								 if ($row['Ticket_Status'] == "Completed"){

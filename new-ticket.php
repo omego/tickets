@@ -1,5 +1,5 @@
-<? 
-include 'header.php';
+<?
+
 include 'connect.php';
 include 'date-time-class.php';
 
@@ -15,20 +15,17 @@ $Category_List = mysql_query("select Name from category");
 	$(document).ready(function() { 
 		// bind 'myForm' and provide a simple callback function 
 		$('#myForm').ajaxForm(function() { 
-			$('#notification').miniNotification();
-			$('#testmod').modal({
-			  keyboard: false
-			})
+			Messenger().post({
+			  message: 'The Ticket Has been Submitted',
+			  showCloseButton: true
+			});
+			$('#testmod').modal('hide');
 
 		});
 		 
 	}); 
 </script> 
 
-
-	<div id="notification">
-	  <p>The notification has been successfully displayed</p>
-	</div>
 
 
 
