@@ -1,5 +1,10 @@
-<? $results = mysql_query("select * from tickets_entry"); ?>
-<? include 'new-ticket.php'; ?>
+<? 
+
+$results = mysql_query("select * from tickets_entry"); 
+
+
+
+?>
 
 <script type="text/javascript">
 	
@@ -43,9 +48,9 @@ return false;
 			  <div class="panel-body">
 
 
-				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#testmod">
+				<a class="btn btn-primary btn-lg" href="new-ticket.php">
 				  Create New Ticket
-				</button>
+				</a>
 			  </div>
 			</div></div>
 
@@ -80,7 +85,26 @@ return false;
 								<td><a href="<? echo 'view-ticket.php?id=' . $row['id'] . ''; ?>"><? echo $row['Ticket_title']; ?></a> <br><small>in <? echo $row['Ticket_Category']; ?></small></td>
 								<td><h5><? echo $row['Service_Description']; ?></h5></td>
 								<td><? echo $row['Engineer_Name']; ?></td>
+								
+								<?
+								$eng_email = mysql_query("select Email from users where Real_Name = '". $row['Engineer_Name'] ."'");
+								$row13 = mysql_fetch_array($eng_email);
+								
+								$ticketlink = "http:/10.131.9.184:8888/tickets/view-ticket.php?id=" . $row['id'] . "/";
+								
+								$msgbody1 = 'Dear Mr. ' . $row['Engineer_Name'] . ',';
+								$msgbody2 = "You have a new Support ticket in STS";
+								$msgbody3 = $ticketlink;
+								$msgbody4 = "%0D%0A %0D%0A Reagrds, %0D%0A COMJ IT, %0D%0A Support Tickets System";
+								$msgbody = $msgbody1 . '%0D%0A %0D%0A' . $msgbody2 . '%0D%0A' . $msgbody3 . '' . $msgbody4;
+								?>
+								
+								
 								<td class="text-center">
+									<a  class='btn btn-default btn-xs' href="mailto:<? echo $row13['Email']; ?>?Subject=[STS] <? echo $row['Ticket_title']; ?>&body=<? echo $msgbody; ?>" target="_top"><span class="glyphicon glyphicon-send"></span></a>
+									
+
+									
 									<a class='btn btn-default btn-xs' title="Edit" href="<? echo 'edit-ticket.php?id=' . $row['id'] . ''; ?>"><span class="glyphicon glyphicon-edit"></span></a> 
 									<a class='btn btn-default btn-xs' title="Print" href="<? echo 'pdf.php?id=' . $row['id'] . ''; ?>"><span class="glyphicon glyphicon-print"></span></a> 
 									<a href="#" id="<?php echo $row['id']; ?>" class="btn btn-default btn-xs delete_button" title="Click To Delete"><span class="glyphicon glyphicon-remove"></span></a>

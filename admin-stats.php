@@ -13,7 +13,11 @@ $percentCount = mysql_query("SELECT * FROM tickets_entry where Ticket_Status = '
 //$percentCount = mysql_query("SELECT Ticket_Status,COUNT(*) FROM tickets_entry WHERE Ticket_Status='Completed'");
 $percentnumRows = mysql_num_rows($percentCount);
 
-$totalticketspercent = $numRows - $percentnumRows * 100 / 100;
+$Uncompleted = $numRows -  $percentnumRows;
+
+$totalticketspercent = number_format((($numRows - $Uncompleted) * 100) / $numRows);
+
+
 
 ?>
 
@@ -25,7 +29,7 @@ $totalticketspercent = $numRows - $percentnumRows * 100 / 100;
 				 <i class="glyphicon glyphicon-inbox"></i>
 			</div>
 			<div class="text">
-				<var><?echo $percentnumRows;?></var>
+				<var><?echo $numRows;?></var>
 				<label class="text-muted">Total Tickets</label>
 			</div>
 			
@@ -49,7 +53,7 @@ $totalticketspercent = $numRows - $percentnumRows * 100 / 100;
 				 <i class="glyphicon glyphicon-tags"></i>
 			</div>
 			<div class="text">
-				<var>25</var>
+				<var><?echo $Uncompleted;?></var>
 				<label class="text-muted">Uncompleted Tickets</label>
 			</div>
 

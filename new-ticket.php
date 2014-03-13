@@ -1,5 +1,5 @@
 <?
-
+include 'header.php';
 include 'connect.php';
 include 'date-time-class.php';
 
@@ -8,37 +8,31 @@ $Category_List = mysql_query("select Name from category");
 
 ?>
 
-
-
-<script> 
+<script>
 	// wait for the DOM to be loaded 
 	$(document).ready(function() { 
 		// bind 'myForm' and provide a simple callback function 
 		$('#myForm').ajaxForm(function() { 
 			Messenger().post({
-			  message: 'The Ticket Has been Submitted',
-			  showCloseButton: true
+			  message: 'Successful Created',
 			});
-			$('#testmod').modal('hide');
-
-		});
-		 
-	}); 
-</script> 
-
-
+			setTimeout(function() {
+			  window.location.href = "index.php";
+			}, 2000);
+		}); 
+	}); 	
+</script>
 
 
-		<div class="modal fade" id="testmod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-lg">
-			<div class="modal-content">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Create New Ticket</h4>
-			  </div>
-			  <div class="modal-body">
+ 
+	 <div class="container">
+	 
+	 <div class="panel panel-default">
+	 <div class="panel-body">
+
+
 		<form id="myForm" action="ticket-process.php" method="post" class="form-horizontal">
-		
+		<legend>New Ticket</legend>
 		
 		<div class="row">
 		
@@ -172,16 +166,26 @@ $Category_List = mysql_query("select Name from category");
 		
 		</div><!-- ROW END -->
 		
+		
+		<div class="row">
+			<!-- Text input-->
+			<div class="col-md-12">
+				<div class="control-group">
+					<label class="control-label"></label>
+		<div class="controls">
+				<button id="sub" type="submit" class="btn btn-primary">Create</button>
+			
+		
+			</div></div></div>
+		
+		
+				</div><!-- ROW END -->
+		
+	</form>
 
 		
 		
-	  </div>
-      	  <div class="modal-footer">
-      		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      		<button id="sub" type="submit" class="btn btn-primary">Create</button>
-      	  </div>
-      	  </form>
-      	</div>
+	        	</div>
         </div>
       </div>
 		

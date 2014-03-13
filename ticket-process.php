@@ -6,7 +6,9 @@ $Report_No = $_POST['Report_No'];
 $Ticket_Create_Date = $_POST['Ticket_Create_Date'];
 $Ticket_Create_Time = $_POST['Ticket_Create_Time'];
 
-$Ticket_title = $_POST['Ticket_title']; 
+$Ticket_title_unsafe = $_POST['Ticket_title']; 
+
+$Ticket_title = mysql_real_escape_string(strip_tags(trim($Ticket_title_unsafe))); 
 
 $Location_Building = $_POST['Location_Building'];
 $Location_Room_No = $_POST['Location_Room_No'];

@@ -3,7 +3,7 @@ include 'header.php';
 include 'connect.php';
 include 'date-time-class.php';
 
-$Real_Name_List = mysql_query("select Username from users");
+$Real_Name_List = mysql_query("select Real_Name from users");
 $Category_List = mysql_query("select Name from category");
 $Status_List = mysql_query("select Status from Status");
 
@@ -28,7 +28,20 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 
 
 ?>
-
+<script>
+	// wait for the DOM to be loaded 
+	$(document).ready(function() { 
+		// bind 'myForm' and provide a simple callback function 
+		$('#myForm').ajaxForm(function() { 
+			Messenger().post({
+			  message: 'Successfully Saved',
+			});
+			setTimeout(function() {
+			  window.location.href = "index.php";
+			}, 2000);
+		}); 
+	}); 	
+</script>
 
 
 
@@ -139,7 +152,7 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 		  <div class="controls">
 			<select id="Engineer_Name" name="Engineer_Name" class="form-control input-lg" disabled>
 			 <? while($row3 = mysql_fetch_array($Real_Name_List)){ ?>
-			  		<option <? if( $row3['Username']== $row1['Engineer_Name']) echo "selected"; ?>><? echo $row3['Username']; ?></option>
+			  		<option <? if( $row3['Real_Name']== $row1['Engineer_Name']) echo "selected"; ?>><? echo $row3['Real_Name']; ?></option>
 			   	<? } ?>			
 			   	</select>
 
@@ -200,7 +213,7 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 		<div class="panel panel-default">
 		<div class="panel-body">
 
-	<form action="ticket-process-2.php" method="post" class="form-horizontal">
+	<form id="myForm" action="ticket-process-2.php" method="post" class="form-horizontal">
 <input  name="id_id" hidden="hidden" type="text" value="<?php echo $row1['id'] ?>">
 	<!-- Form Name -->
 	<legend>Ticket Process</legend>

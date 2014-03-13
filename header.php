@@ -10,7 +10,7 @@ if(isset($_SESSION['Username']))
 <html lang="en">
   <head>
 	<meta charset="utf-8">
-	<title>SIS</title>
+	<title>STS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Loading Bootstrap -->
@@ -31,8 +31,8 @@ if(isset($_SESSION['Username']))
 	<script src="js/messenger-theme-flat.js"></script>
 	<script type="text/javascript">
 			Messenger.options = {
-				extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
-				theme: 'flat'
+				extraClasses: 'messenger-fixed messenger-on-top messenger-on-center',
+				theme: 'ice'
 			}
 	</script>
 	

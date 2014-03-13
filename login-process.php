@@ -6,7 +6,7 @@ include 'connect.php';
 $username = $_POST['Username'];
 $password = $_POST['Password'];
 
- $encrypted_password = md5($password);
+$encrypted_password = md5($password);
 
 $result = mysql_query("SELECT * FROM users WHERE Username = '$username' AND Password = '$encrypted_password'
 ");
