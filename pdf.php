@@ -19,12 +19,11 @@
   $Engineer_ID = $row1['Engineer_ID'];
  
  //echo $Engineer_ID;
- 
- $Engineer_IDLIST = mysql_query("select Badge from users where id = $Engineer_ID");
- 
- $row2 = mysql_fetch_array($Engineer_IDLIST); 
- 
-  $Engineer_IDLIST = $row2['Badge'];
+$eng_badge = mysql_query("select Badge from users where Real_Name = '". $row1['Engineer_Name'] ."'");
+
+$row2 = mysql_fetch_array($eng_badge); 
+
+$Engineer_IDLIST = $row2['Badge'];
  
  //echo $Engineer_IDLIST;
 

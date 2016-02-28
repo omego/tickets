@@ -2,6 +2,8 @@
 ob_start();
 session_start();
 
+include 'connect.php';
+
 if(isset($_SESSION['Username']))
 {
 
@@ -19,16 +21,19 @@ if(isset($_SESSION['Username']))
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/messenger-theme-flat.css" rel="stylesheet">
 	<link href="css/messenger.css" rel="stylesheet">
+	<link href="css/datepicker.css" rel="stylesheet">    
+    <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
 
-	
 <!-- 	<link href="css/desktop.css" rel="stylesheet" media="(min-width: 1200px)" />-->
-	
-	<script src="js/bootstrap.js"></script>
 	<script src="js/jquery.js"></script>
+    <script src="js/star-rating.js" type="text/javascript"></script>
+    <script src="js/Chart.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/pagination.js"></script>
 	<script src="js/miniNotification.js"></script>
 	<script src="js/jquery.form.js"></script>
 	<script src="js/messenger.min.js"></script>
-	<script src="js/messenger-theme-flat.js"></script>
 	<script type="text/javascript">
 			Messenger.options = {
 				extraClasses: 'messenger-fixed messenger-on-top messenger-on-center',
@@ -65,9 +70,14 @@ if(isset($_SESSION['Username']))
 		</div>
 		<button type="submit" class="btn btn-default">Submit</button>
 	  </form>
+		<?
+		$eng_info = mysql_query("select * from users where Username = '".$_SESSION['Username']."'");
+		$row13dsa33 = mysql_fetch_array($eng_info);
 
+		?>
+		
 
-	  <p class="navbar-text navbar-right">Signed in as <strong> <? echo $_SESSION['Username']; ?></strong>, <a href="logout.php">logout</a></p>
+	  <p class="navbar-text navbar-right">Signed in as <strong> <a href="<? echo 'profile.php?id=' . $row13dsa33['id'] . ''; ?>"><? echo $_SESSION['Username']; ?></a> </strong>, <a href="logout.php">logout</a></p>
 
 
 

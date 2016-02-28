@@ -5,6 +5,7 @@ include 'date-time-class.php';
 
 $Real_Name_List = mysql_query("select Real_Name from users");
 $Category_List = mysql_query("select Name from category");
+$Floor_List = mysql_query("select Name from Floor");
 $Status_List = mysql_query("select Status from Status");
 
 $member_id = $_GET['id'];
@@ -14,17 +15,15 @@ $member_id_tickets = mysql_query("select * from tickets_entry where id = $member
 $row1 = mysql_fetch_array($member_id_tickets); 
 
 
- $Engineer_ID = $row1['Engineer_ID'];
+$Engineer_ID = $row1['Engineer_Name'];
 
 //echo $Engineer_ID;
 
-$Engineer_IDLIST = mysql_query("select Badge from users where id = $Engineer_ID");
+$eng_badge = mysql_query("select Badge from users where Real_Name = '". $row1['Engineer_Name'] ."'");
 
-$row2 = mysql_fetch_array($Engineer_IDLIST); 
+$row2 = mysql_fetch_array($eng_badge); 
 
- $Engineer_IDLIST = $row2['Badge'];
-
-//echo $Engineer_IDLIST;
+$Engineer_LIST = $row2['Badge'];
 
 
 ?>
@@ -93,6 +92,42 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 
 	</div><!-- ROW END -->
 
+	<div class="row">
+		
+		<!-- Text input-->
+		<div class="col-sm-6">
+		<div class="control-group">
+		  <label class="control-label" for="Requester_Name">Requester Name</label>
+		  <div class="controls">
+			<input id="Requester_Name" name="Requester_Name" value="<? echo $row1['Requester_Name'];  ?>" placeholder="" class="form-control input-lg" type="text" disabled>
+		  </div>
+		</div>
+		</div>
+		
+		<!-- Text input-->
+		<div class="col-sm-6">
+		<div class="control-group">
+		  <label class="control-label" for="Requester_Email">Requester Email</label>
+		  <div class="controls">
+			<input id="Requester_Email" name="Requester_Email" value="<? echo $row1['Requester_Email'];  ?>" placeholder="" class="form-control input-lg" type="text" disabled>
+		  </div>
+		</div>
+		</div>
+		
+	</div><!-- ROW END -->
+		
+		<div class="row">
+			<!-- Select Basic -->
+			<div class="col-md-12">
+			<div class="control-group">
+			  <label class="control-label" for="Ticket_title">Ticket title</label>
+			  <div class="controls">
+				<input id="$Ticket_title" name="Ticket_title" value="<? echo $row1['Ticket_title'] ; ?>" placeholder="" class="form-control input-lg" type="text" disabled>
+			  </div>
+			</div>
+			</div>
+			</div><!-- ROW END -->
+
 		<div class="row">
 		<!-- Select Basic -->
 		<div class="col-md-4">
@@ -121,11 +156,9 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 		  <label class="control-label" for="Location_Floor">Floor</label>
 		  <div class="controls">
 			<select id="Location_Floor" name="Location_Floor" class="form-control input-lg" disabled>
-			  <option>Ground</option>
-			  <option>First</option>
-			  <option>Second</option>
-			  <option>Third</option>
-			  <option>Fourth</option>
+			 <? while($row113 = mysql_fetch_array($Floor_List)){ ?>
+			 		<option <? if( $row113['Name']== $row1['Location_Floor']) echo "selected"; ?>><? echo $row113['Name']; ?></option>
+			  	<? } ?>		
 			</select>
 		  </div>
 		</div></div>

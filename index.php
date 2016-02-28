@@ -31,27 +31,16 @@ Hello world!
 
 <div class="container">
 	
-	<div class="row">
-	
-		<div class="col-md-12">
-	
-		<div class="panel panel-default">
-		  <div class="panel-body">
-	
-	
-			<H4 class="text-center">The system is under quick maintenance, You might face some minor problems</h4>
-		  </div>
-		</div></div>
-</div>
+
 	
 <?
 
 if ($user_group == "Administrator"){
 include 'admin-cp.php';
-echo "Administrator";
+//echo "Administrator";
 }elseif ($user_group == "Users"){
 include 'user-cp.php';
-echo "Users";
+//echo "Users";
 }
 
 ?>
@@ -60,8 +49,7 @@ echo "Users";
 
 
 <!-- Load JS here for greater good =============================-->
-<script src="js/bootstrap.js"></script>
-<script src="js/bootstrap.min.js"></script>
+
 
 
 

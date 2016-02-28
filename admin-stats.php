@@ -42,7 +42,7 @@ $totalticketspercent = number_format((($numRows - $Uncompleted) * 100) / $numRow
 			</div>
 			<div class="text">
 				<var><?echo $usersnumRows;?></var>
-				<label class="text-muted">Total Engineers</label>
+				<label class="text-muted"><a href="user-list.php">Total Engineers</a></label>
 			</div>
 
 		</div>
@@ -71,4 +71,5 @@ $totalticketspercent = number_format((($numRows - $Uncompleted) * 100) / $numRow
 
 		</div>
 	</div>
+	
 </div>

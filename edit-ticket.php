@@ -5,11 +5,12 @@ include 'date-time-class.php';
 
 $Real_Name_List = mysql_query("select Real_Name from users");
 $Category_List = mysql_query("select Name from category");
+$Floor_List = mysql_query("select Name from Floor");
 $Status_List = mysql_query("select Status from Status");
 
 $member_id = $_GET['id'];
 
-$member_id_tickets = mysql_query("select * from tickets_entry where id = $member_id");
+$member_id_tickets = mysql_query("select * from tickets_entry where id = ' $member_id '");
 
 $row1 = mysql_fetch_array($member_id_tickets); 
 
@@ -18,7 +19,7 @@ $row1 = mysql_fetch_array($member_id_tickets);
 
 //echo $Engineer_ID;
 
-$Engineer_IDLIST = mysql_query("select Badge from users where id = $Engineer_ID");
+$Engineer_IDLIST = mysql_query("select Badge from users where id = '$Engineer_ID'");
 
 $row2 = mysql_fetch_array($Engineer_IDLIST); 
 
@@ -94,7 +95,31 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 			</div>
 		
 		</div><!-- ROW END -->
+
+	<div class="row">
 		
+		<!-- Text input-->
+		<div class="col-sm-6">
+		<div class="control-group">
+		  <label class="control-label" for="Requester_Name">Requester Name</label>
+		  <div class="controls">
+			<input id="Requester_Name" name="Requester_Name" value="<? echo $row1['Requester_Name'];  ?>" placeholder="" class="form-control input-lg" type="text">
+		  </div>
+		</div>
+		</div>
+		
+		<!-- Text input-->
+		<div class="col-sm-6">
+		<div class="control-group">
+		  <label class="control-label" for="Requester_Email">Requester Email</label>
+		  <div class="controls">
+			<input id="Requester_Email" name="Requester_Email" value="<? echo $row1['Requester_Email'];  ?>" placeholder="" class="form-control input-lg" type="text">
+		  </div>
+		</div>
+		</div>
+		
+	</div><!-- ROW END -->
+
 		<div class="row">
 			<!-- Select Basic -->
 			<div class="col-md-12">
@@ -114,7 +139,11 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 			  <label class="control-label" for="Location_Building">Building</label>
 			  <div class="controls">
 				<select id="Location_Building" name="Location_Building" class="form-control input-lg">
-				  <option>COMJ</option>
+					<option>COMJ-M</option>
+					<option>COMJ-F</option>
+					<option>CSCJ</option>
+					<option>CAMSJ-M</option>
+					<option>CAMSJ-F</option>
 				</select>
 			  </div>
 			</div></div>
@@ -135,11 +164,9 @@ $row2 = mysql_fetch_array($Engineer_IDLIST);
 			  <label class="control-label" for="Location_Floor">Floor</label>
 			  <div class="controls">
 				<select id="Location_Floor" name="Location_Floor" class="form-control input-lg">
-				  <option>Ground</option>
-				  <option>First</option>
-				  <option>Second</option>
-				  <option>Third</option>
-				  <option>Fourth</option>
+			 <? while($row113 = mysql_fetch_array($Floor_List)){ ?>
+			 		<option <? if( $row113['Name']== $row1['Location_Floor']) echo "selected"; ?>><? echo $row113['Name']; ?></option>
+			  	<? } ?>	
 				</select>
 			  </div>
 			</div></div>

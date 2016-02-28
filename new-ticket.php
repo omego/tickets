@@ -70,6 +70,30 @@ $Category_List = mysql_query("select Name from category");
 		</div>
 		
 	</div><!-- ROW END -->
+
+	<div class="row">
+		
+		<!-- Text input-->
+		<div class="col-sm-6">
+		<div class="control-group">
+		  <label class="control-label" for="Requester_Name">Requester Name</label>
+		  <div class="controls">
+			<input id="Requester_Name" name="Requester_Name" value="<? echo $Requester_Name ; ?>" placeholder="" class="form-control input-lg" type="text">
+		  </div>
+		</div>
+		</div>
+		
+		<!-- Text input-->
+		<div class="col-sm-6">
+		<div class="control-group">
+		  <label class="control-label" for="Requester_Email">Requester Email</label>
+		  <div class="controls">
+			<input id="Requester_Email" name="Requester_Email" value="<? echo $Requester_Email ; ?>" placeholder="" class="form-control input-lg" type="text">
+		  </div>
+		</div>
+		</div>
+		
+	</div><!-- ROW END -->
 		
 		<div class="row">
 			<!-- Select Basic -->
@@ -90,7 +114,11 @@ $Category_List = mysql_query("select Name from category");
 		  <label class="control-label" for="Location_Building">Building</label>
 		  <div class="controls">
 			<select id="Location_Building" name="Location_Building" class="form-control input-lg">
-			  <option>COMJ</option>
+			  <option>COMJ-M</option>
+			  <option>COMJ-F</option>
+			  <option>CSCJ</option>
+			  <option>CAMSJ-M</option>
+			  <option>CAMSJ-F</option>
 			</select>
 		  </div>
 		</div></div>
